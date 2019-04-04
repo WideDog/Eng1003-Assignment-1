@@ -19,8 +19,9 @@ void putInSpaces(char *someString3);
 int main() {
     char userChoice = 0;
     printf("Choose an option:\n\n");
-    printf("a). Have a pre-determined message be encrypted with a rotation key of your choice.\n\n");
-    printf("b). gang ganggnagnangng\n\n");
+    printf("a). Have a pre-determined message encrypted with a rotation key of your choice.\n\n");
+    printf("b). Have a message of your choosing encrypted with a rotation key of your choosing.\n");
+    printf("Your encrypted message will then be decoded.\n\n")//i put the rest of option B here so my code didn't go off the edge the screen
     scanf("%c", &userChoice);
     if(userChoice < 'a' || userChoice > 'b') 
     {
