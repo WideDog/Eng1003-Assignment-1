@@ -9,7 +9,7 @@
    and 'the' literals. then use AND/OR to verify then stop the loop to print the output.
    check for and, to, I, a, the, am
    */
-
+//BIG PROBLEM FOR LETTER Z
 
 
 
@@ -55,13 +55,18 @@ int main() {
         }
         case 'b': 
         {
+            int rotation = 1;
             char string2[60];
             printf("Type a message that is to be encrypted. If you wish to put spaces in between words, use a '_' symbol instead of a space.\n");
             scanf("%s", string2);
             putInSpaces(string2);
-            printf(choose)
-            encrpytRotation
             printf("%s\n", string2);
+            printf("Choose a rotation key.\n");
+            scanf("%d", &rotation);
+            encryptRotation(string2, rotation);
+            printf("Your encrypted message: %s\n", string2);
+            decryptRotation(string2);
+            printf("Your message has been decrypted: %s\n", string2);
         }
         case 'c':
         {
@@ -93,6 +98,7 @@ void encryptRotation(char *someString, int someInteger)
         }
         someString[r] = someString[r] + someInteger;
         r++;
+        // DO AN IF STATEMENT THAT CHECKS IF THE LETTER PLUS THE INTEGER IS GREATER THAN 120 OR 90 OR WHATEVER IT IS WHILE ALSO CHECKING IF IT IS IN THE RANGE BETWEEN UPPOER CASE OR LOWER CASE
     }
    
 }
@@ -101,8 +107,8 @@ void encryptRotation(char *someString, int someInteger)
 
 void decryptRotation(char *someString2)
 {
-    int i = 0;
     int Z = 1;
+    int i = 0;
     int new = 0;
     char storage1 = 0;
     char storage2 = 0;
@@ -114,48 +120,79 @@ void decryptRotation(char *someString2)
     
     while(Z < 26 && new == 0)
     {
-       
-        while(someString2[i] != \0)
+        i = 0;
+        while(someString2[i] != '\0')
         {
             if(someString2[i] == ' ')
             {
-                i++
+                i++;
             }
-            someString2[i] = someString2[i] + r;
-            i++
+            someString2[i] = someString2[i] + 1;
+            i++;
         }
+        printf("%s   %d\n", someString2, Z);
+        
         i = 0;
-        while(someString[i] != \0)
+        while(someString2[i] != '\0')
         {
             
-            storage1 = someString[i];
-            i++
-             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ' || storage1 == 'a' && storage2 == ' ' && storage3 == ' ' || storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            storage1 = someString2[i];
+            i++;
+            if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
             {
                 new = 1;
-                Z = Z - 1;
                 break;
             }
-            storage2 = someString[i];
-            i++
-             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ' || storage1 == 'a' && storage2 == ' ' && storage3 == ' ' || storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
             {
                 new = 1;
-                Z = Z - 1;
                 break;
             }
-            storage3 = someString[i];
-            i++
-            if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ' || storage1 == 'a' && storage2 == ' ' && storage3 == ' ' || storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
             {
                 new = 1;
-                Z = Z - 1;
+                break;
+            }
+            storage2 = someString2[i];
+            i++;
+             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
+            {
+                new = 1;
+                break;
+            }
+            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
+            {
+                new = 1;
+                break;
+            }
+            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            {
+                new = 1;
+                break;
+            }
+            storage3 = someString2[i];
+            i++;
+            if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
+            {
+                new = 1;
+                break;
+            }
+            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
+            {
+                new = 1;
+                break;
+            }
+            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            {
+                new = 1;
                 break;
             }
 
         }
-        Z++
+        Z++;
+      
      }
+     
 
 }
 
