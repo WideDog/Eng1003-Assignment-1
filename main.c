@@ -96,9 +96,21 @@ void encryptRotation(char *someString, int someInteger)
         {
             r++;
         }
+        if(someString[r] <= 90 && someString[r] >= 65 && someString[r] + someInteger > 90)
+        {
+            someString[r] = someString[r] + someInteger - 26;
+            r++;
+        }
+        if(someString[r] == ' ') 
+        {
+            r++;
+        }
         someString[r] = someString[r] + someInteger;
+        if(someString[r] > 122)
+        {
+            someString[r] = someString[r] - 26;
+        }
         r++;
-        // DO AN IF STATEMENT THAT CHECKS IF THE LETTER PLUS THE INTEGER IS GREATER THAN 120 OR 90 OR WHATEVER IT IS WHILE ALSO CHECKING IF IT IS IN THE RANGE BETWEEN UPPOER CASE OR LOWER CASE
     }
    
 }
