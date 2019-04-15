@@ -15,8 +15,8 @@
 
 // FUNCTION PROTOTYPES
 void encryptRotation(unsigned char *someString, int someInteger);
-void decryptRotation(unsigned char *someString2);
-void putInSpaces(unsigned char *someString3);
+void decryptRotation(unsigned char *someString);
+void putInSpaces(unsigned char *someString);
 // FUNCTION PROTOTYPES
 
 
@@ -56,17 +56,17 @@ int main() {
         case 'b': 
         {
             int rotation = 1;
-            unsigned char string2[60];
-            printf("Type a message that is to be encrypted. If you wish to put spaces in between words, use a '_' symbol instead of a space.\n");
-            scanf("%s", string2);
-            putInSpaces(string2);
-            printf("%s\n", string2);
+            unsigned char string[100];
+            printf("Type a message that is to be encrypted. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            scanf("%s", string);
+            putInSpaces(string);
+            printf("%s\n", string);
             printf("Choose a rotation key.\n");
             scanf("%d", &rotation);
-            encryptRotation(string2, rotation);
-            printf("Your encrypted message: %s\n", string2);
-            decryptRotation(string2);
-            printf("Your message has been decrypted: %s\n", string2);
+            encryptRotation(string, rotation);
+            printf("Your encrypted message: %s\n", string);
+            decryptRotation(string);
+            printf("Your message has been decrypted: %s\n", string);
         }
         case 'c':
         {
@@ -89,35 +89,35 @@ int main() {
 // FUNCTION DEFINITIONS
 void encryptRotation(unsigned char *someString, int someInteger) 
 {
-    int r = 0;
-    while(someString[r] != '\0') 
+    int i = 0;
+    while(someString[i] != '\0') 
     {
-        if(someString[r] == ' ') 
+        if(someString[i] == ' ' || someString[i] == '.') 
         {
-            r++;
+            i++;
         }
-        if(someString[r] <= 90 && someString[r] >= 65 && someString[r] + someInteger > 90)
+        if(someString[i] <= 90 && someString[i] >= 65 && someString[i] + someInteger > 90)
         {
-            someString[r] = someString[r] + someInteger - 26;
-            r++;
+            someString[i] = someString[i] + someInteger - 26;
+            i++;
         }
-        if(someString[r] == ' ') 
+        if(someString[i] == ' ' || someString[i] == '.') 
         {
-            r++;
+            i++;
         }
-        someString[r] = someString[r] + someInteger;
-        if(someString[r] > 122)
+        someString[i] = someString[i] + someInteger;
+        if(someString[i] > 122)
         {
-            someString[r] = someString[r] - 26;
+            someString[i] = someString[i] - 26;
         }
-        r++;
+        i++;
     }
    
 }
 
 
 
-void decryptRotation(unsigned char *someString2)
+void decryptRotation(unsigned char *someString)
 {
     int Z = 1;
     int i = 0;
@@ -133,33 +133,37 @@ void decryptRotation(unsigned char *someString2)
     while(Z < 26 && new == 0)
     {
         i = 0;
-        while(someString2[i] != '\0')
+        while(someString[i] != '\0')
         {
-            if(someString2[i] == ' ')
+            if(someString[i] == '.' || someString[i] == ' ')
             {
                 i++;
             }
-            someString2[i] = someString2[i] + 1;
-            if(someString2[i] > 122)
+            if(someString[i] == '.' || someString[i] == ' ')
             {
-                someString2[i] = someString2[i] - 26;
+                i++;
             }
-            if(someString2[i] > 90 && someString2[i] < 97)
+            someString[i] = someString[i] + 1;
+            if(someString[i] > 122)
             {
-                someString2[i] = someString2[i] -26;
+                someString[i] = someString[i] - 26;
+            }
+            if(someString[i] > 90 && someString[i] < 97)
+            {
+                someString[i] = someString[i] -26;
             }
             i++;
             
             
             
-        }
-        printf("%s   %d\n", someString2, Z);
-        
+    }
+
+        printf("%s   %d\n", someString, Z);
         i = 0;
-        while(someString2[i] != '\0')
+        while(someString[i] != '\0')
         {
             
-            storage1 = someString2[i];
+            storage1 = someString[i];
             i++;
             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
             {
@@ -176,7 +180,7 @@ void decryptRotation(unsigned char *someString2)
                 new = 1;
                 break;
             }
-            storage2 = someString2[i];
+            storage2 = someString[i];
             i++;
              if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
             {
@@ -193,7 +197,7 @@ void decryptRotation(unsigned char *someString2)
                 new = 1;
                 break;
             }
-            storage3 = someString2[i];
+            storage3 = someString[i];
             i++;
             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
             {
@@ -226,16 +230,16 @@ void decryptRotation(unsigned char *someString2)
 
 
 
-void putInSpaces(unsigned char *someString3)
+void putInSpaces(unsigned char *someString)
 {
-    int r = 0;
-    while(someString3[r] != '\0') 
+    int i = 0;
+    while(someString[i] != '\0') 
     {
-        if(someString3[r] == '_') 
+        if(someString[i] == '-') 
         {
-            someString3[r] = ' ';
+            someString[i] = ' ';
         }
-    r++;
+    i++;
     }
 
 }
