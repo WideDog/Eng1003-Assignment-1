@@ -121,16 +121,17 @@ void decryptRotation(unsigned char *someString)
 {
     int Z = 1;
     int i = 0;
-    int new = 0;
-    char storage1 = 0;
-    char storage2 = 0;
-    char storage3 = 0;
+    int wordFound = 0;
+    char wordCheck1 = 0;
+    char wordCheck2 = 0;
+    char wordCheck3 = 0;
+    char wordCheck4 = 0;
     
     
     
     
     
-    while(Z < 26 && new == 0)
+    while(Z < 100 && wordFound == 0)
     {
         i = 0;
         while(someString[i] != '\0')
@@ -160,61 +161,102 @@ void decryptRotation(unsigned char *someString)
 
         printf("%s   %d\n", someString, Z);
         i = 0;
-        while(someString[i] != '\0')
+        while(someString[i] != '\0') //HAVE TO HAVE 2 SEPRATE STORAGE VARIABLE LISTS, 1 WITH 3 AND 1 WITH 4
         {
             
-            storage1 = someString[i];
+            wordCheck1 = someString[i];
             i++;
-            if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
+            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            storage2 = someString[i];
+            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            wordCheck2 = someString[i];
             i++;
-             if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
+            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            storage3 = someString[i];
+            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            wordCheck3 = someString[i];
             i++;
-            if(storage1 == ' ' && storage2 == 'a' && storage3 == ' ')
+            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == 'a' && storage2 == ' ' && storage3 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-            if(storage1 == ' ' && storage2 == ' ' && storage3 == 'a')
+            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
             {
-                new = 1;
+                wordFound = 1;
                 break;
             }
-
+            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            wordCheck4 = someString[i];
+            i++;
+            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
         }
         Z++;
       
