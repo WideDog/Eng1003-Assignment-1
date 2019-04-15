@@ -14,9 +14,9 @@
 
 
 // FUNCTION PROTOTYPES
-void encryptRotation(char *someString, int someInteger);
-void decryptRotation(char *someString2);
-void putInSpaces(char *someString3);
+void encryptRotation(unsigned char *someString, int someInteger);
+void decryptRotation(unsigned char *someString2);
+void putInSpaces(unsigned char *someString3);
 // FUNCTION PROTOTYPES
 
 
@@ -45,7 +45,7 @@ int main() {
         case'a': 
         {
             int rotation = 1;
-            char string[] = {'i', 't', ' ', 'b', 'e', ' ', 'l', 'i', 'k', 'e', ' ', 't', 'h', 'a', 't', '\0'};
+            unsigned char string[] = {'i', 't', ' ', 'b', 'e', ' ', 'l', 'i', 'k', 'e', ' ', 't', 'h', 'a', 't', '\0'};
             printf("The unencrypted message: %s\n", string);
             printf("Type a rotation key\n");
             scanf("%d", &rotation);
@@ -56,7 +56,7 @@ int main() {
         case 'b': 
         {
             int rotation = 1;
-            char string2[60];
+            unsigned char string2[60];
             printf("Type a message that is to be encrypted. If you wish to put spaces in between words, use a '_' symbol instead of a space.\n");
             scanf("%s", string2);
             putInSpaces(string2);
@@ -87,7 +87,7 @@ int main() {
 
 
 // FUNCTION DEFINITIONS
-void encryptRotation(char *someString, int someInteger) 
+void encryptRotation(unsigned char *someString, int someInteger) 
 {
     int r = 0;
     while(someString[r] != '\0') 
@@ -117,7 +117,7 @@ void encryptRotation(char *someString, int someInteger)
 
 
 
-void decryptRotation(char *someString2)
+void decryptRotation(unsigned char *someString2)
 {
     int Z = 1;
     int i = 0;
@@ -140,7 +140,18 @@ void decryptRotation(char *someString2)
                 i++;
             }
             someString2[i] = someString2[i] + 1;
+            if(someString2[i] > 122)
+            {
+                someString2[i] = someString2[i] - 26;
+            }
+            if(someString2[i] > 90 && someString2[i] < 97)
+            {
+                someString2[i] = someString2[i] -26;
+            }
             i++;
+            
+            
+            
         }
         printf("%s   %d\n", someString2, Z);
         
@@ -215,7 +226,7 @@ void decryptRotation(char *someString2)
 
 
 
-void putInSpaces(char *someString3)
+void putInSpaces(unsigned char *someString3)
 {
     int r = 0;
     while(someString3[r] != '\0') 
