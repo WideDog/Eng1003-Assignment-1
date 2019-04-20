@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 // to do list: Do rotation on a string and then print the encrypted message. Use a key rotation of 1?
 // key, rotation, substitution, decrypt, encrypt
 /* create a user interface that allows the user to choose whether they want to see an encrypted message,
@@ -131,7 +130,7 @@ void decryptRotation(unsigned char *someString)
     
     
     
-    while(Z < 100 && wordFound == 0)
+    while(Z < 26 && wordFound == 0)
     {
         i = 0;
         while(someString[i] != '\0')
@@ -161,8 +160,10 @@ void decryptRotation(unsigned char *someString)
         while(someString[i] != '\0') //HAVE TO HAVE 2 SEPRATE STORAGE VARIABLE LISTS, 1 WITH 3 AND 1 WITH 4
         {
             
+            
             wordCheck1 = someString[i];
             i++;
+            
             
             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ') 
             {
@@ -180,8 +181,10 @@ void decryptRotation(unsigned char *someString)
                 break;
             }
             
+            
             wordCheck2 = someString[i];
             i++;
+            
             
             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
@@ -198,8 +201,11 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
+            
+            
             wordCheck3 = someString[i];
             i++;
+            
             
             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
@@ -221,91 +227,566 @@ void decryptRotation(unsigned char *someString)
         i = 0;
         while(someString[i] != '\0')
         {
+            
+            
             wordCheck1 = someString[i];
             i++;
             
-            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 't' && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 't' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 't' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 't' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
             }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 'n' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 'n' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 'n' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 'n' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 's' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 's' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 's' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 't' && wordCheck3 == 'o' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 't' && wordCheck4 == 'o' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 't' && wordCheck1 == 'o' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 't' && wordCheck2 == 'o' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'b' && wordCheck3 == 'e' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'b' && wordCheck4 == 'e' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'b' && wordCheck1 == 'e' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'b' && wordCheck2 == 'e' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'o' && wordCheck3 == 'f' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'o' && wordCheck4 == 'f' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'o' && wordCheck1 == 'f' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'o' && wordCheck2 == 'f' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
             wordCheck2 = someString[i];
             i++;
-            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 't' && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 't' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 't' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 't' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
             }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 'n' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 'n' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 'n' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 'n' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 's' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 's' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 's' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 't' && wordCheck3 == 'o' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 't' && wordCheck4 == 'o' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 't' && wordCheck1 == 'o' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 't' && wordCheck2 == 'o' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'b' && wordCheck3 == 'e' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'b' && wordCheck4 == 'e' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'b' && wordCheck1 == 'e' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'b' && wordCheck2 == 'e' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'o' && wordCheck3 == 'f' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'o' && wordCheck4 == 'f' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'o' && wordCheck1 == 'f' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'o' && wordCheck2 == 'f' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
             wordCheck3 = someString[i];
             i++;
-            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 't' && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 't' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 't' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 't' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
             }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 'n' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 'n' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 'n' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 'n' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 's' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 's' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 's' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 't' && wordCheck3 == 'o' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 't' && wordCheck4 == 'o' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 't' && wordCheck1 == 'o' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 't' && wordCheck2 == 'o' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'b' && wordCheck3 == 'e' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'b' && wordCheck4 == 'e' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'b' && wordCheck1 == 'e' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'b' && wordCheck2 == 'e' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'o' && wordCheck3 == 'f' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'o' && wordCheck4 == 'f' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'o' && wordCheck1 == 'f' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'o' && wordCheck2 == 'f' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
             wordCheck4 = someString[i];
             i++;
-            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 't' && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 't' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 't' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 't' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 'n' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 'n' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 'n' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 'n' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'i' && wordCheck3 == 's' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'i' && wordCheck4 == 's' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'i' && wordCheck2 == 's' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 't' && wordCheck3 == 'o' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 't' && wordCheck4 == 'o' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 't' && wordCheck1 == 'o' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 't' && wordCheck2 == 'o' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'b' && wordCheck3 == 'e' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'b' && wordCheck4 == 'e' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'b' && wordCheck1 == 'e' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'b' && wordCheck2 == 'e' && wordCheck3 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'o' && wordCheck3 == 'f' && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == ' ' && wordCheck3 == 'o' && wordCheck4 == 'f' && wordCheck1 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == ' ' && wordCheck4 == 'o' && wordCheck1 == 'f' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck4 == ' ' && wordCheck1 == 'o' && wordCheck2 == 'f' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
