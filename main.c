@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 // to do list: Do rotation on a string and then print the encrypted message. Use a key rotation of 1?
 // key, rotation, substitution, decrypt, encrypt
 /* create a user interface that allows the user to choose whether they want to see an encrypted message,
@@ -114,8 +113,6 @@ void encryptRotation(unsigned char *someString, int someInteger)
    
 }
 
-
-
 void decryptRotation(unsigned char *someString)
 {
     int Z = 1;
@@ -165,7 +162,7 @@ void decryptRotation(unsigned char *someString)
             i++;
             
             
-            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ') 
+            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
@@ -176,6 +173,24 @@ void decryptRotation(unsigned char *someString)
                 break;
             }
             if(wordCheck3 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
+            
+            if(wordCheck1 == 't' && wordCheck2 == 'h' && wordCheck3 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == 't' && wordCheck3 == 'h' && wordCheck1 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == 't' && wordCheck1 == 'h' && wordCheck2 == 'e')
             {
                 wordFound = 1;
                 break;
@@ -203,6 +218,24 @@ void decryptRotation(unsigned char *someString)
             }
             
             
+            
+            if(wordCheck1 == 't' && wordCheck2 == 'h' && wordCheck3 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == 't' && wordCheck3 == 'h' && wordCheck1 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == 't' && wordCheck1 == 'h' && wordCheck2 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            
+            
             wordCheck3 = someString[i];
             i++;
             
@@ -222,7 +255,24 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
-              
+            
+            
+            
+            if(wordCheck1 == 't' && wordCheck2 == 'h' && wordCheck3 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck2 == 't' && wordCheck3 == 'h' && wordCheck1 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck3 == 't' && wordCheck1 == 'h' && wordCheck2 == 'e')
+            {
+                wordFound = 1;
+                break;
+            }
         }
         i = 0;
         while(someString[i] != '\0')
@@ -289,7 +339,7 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
@@ -430,7 +480,7 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
@@ -571,7 +621,7 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
@@ -712,7 +762,7 @@ void decryptRotation(unsigned char *someString)
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' & wordCheck2 == ' ')
+            if(wordCheck3 == ' ' && wordCheck4 == 'i' && wordCheck1 == 's' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
@@ -798,6 +848,8 @@ void decryptRotation(unsigned char *someString)
      
 
 }
+
+
 
 
 
