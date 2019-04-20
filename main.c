@@ -154,10 +154,7 @@ void decryptRotation(unsigned char *someString)
                 someString[i] = someString[i] -26;
             }
             i++;
-            
-            
-            
-    }
+        }
 
         printf("%s   %d\n", someString, Z);
         i = 0;
@@ -166,97 +163,153 @@ void decryptRotation(unsigned char *someString)
             
             wordCheck1 = someString[i];
             i++;
-            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
-            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
+            
+            if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ') 
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
+            if(wordCheck3 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
-            {
-                wordFound = 1;
-                break;
-            }
+            
             wordCheck2 = someString[i];
             i++;
-            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+            
             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
-            {
-                wordFound = 1;
-                break;
-            }
-            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            if(wordCheck3 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
             wordCheck3 = someString[i];
             i++;
-            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
+            
             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
+            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck1 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
+            if(wordCheck3 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+              
+        }
+        i = 0;
+        while(someString[i] != '\0')
+        {
+            wordCheck1 = someString[i];
+            i++;
+            
+            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            wordCheck2 = someString[i];
+            i++;
+            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
+            {
+                wordFound = 1;
+                break;
+            }
+            wordCheck3 = someString[i];
+            i++;
+            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
+            {
+                wordFound = 1;
+                break;
+            }
+            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
             wordCheck4 = someString[i];
             i++;
-            printf("1: %c  2: %c  3: %c  4: %c index: %d\n", wordCheck1, wordCheck2, wordCheck3, wordCheck4, i);
-             if(wordCheck1 == ' ' && wordCheck2 == 'a' && wordCheck3 == ' ')
+            if(wordCheck1 == ' ' && wordCheck2 == ('i' || 'I') && wordCheck3 == 't' && wordCheck4 == (' ' || '.') )
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck2 == ' ' && wordCheck3 == 'a' && wordCheck4 == ' ')
+            if(wordCheck1 == (' ' || '.') && wordCheck2 == ' ' && wordCheck3 == ('i' || 'I') && wordCheck4 == 't')
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck3 == ' ' && wordCheck4 == 'a' && wordCheck1 == ' ')
+            if(wordCheck1 == 't' && wordCheck2 == (' ' || '.') && wordCheck3 == ' ' && wordCheck4 == ('i' || 'I'))
             {
                 wordFound = 1;
                 break;
             }
-            if(wordCheck4 == ' ' && wordCheck1 == 'a' && wordCheck2 == ' ')
+            if(wordCheck1 == ('i' || 'I') && wordCheck2 == 't' && wordCheck3 == (' ' || '.') && wordCheck4 == ' ')
             {
                 wordFound = 1;
                 break;
             }
-            
         }
         Z++;
       
