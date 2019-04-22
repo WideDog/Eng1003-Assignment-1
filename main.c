@@ -1,13 +1,8 @@
 #include <stdio.h>
-// to do list: Do rotation on a string and then print the encrypted message. Use a key rotation of 1?
-// key, rotation, substitution, decrypt, encrypt
-/* create a user interface that allows the user to choose whether they want to see an encrypted message,
-   decrypted message, or to type a message to be decrypted or encrypted yatta yatta
-   Have to probably use a file for decryption. Each time a key is completed, input it into a file. Read that file, then look for ' I ', ' a ',
-   and 'the' literals. then use AND/OR to verify then stop the loop to print the output.
-   check for and, to, I, a, the, am
-   */
-//BIG PROBLEM FOR LETTER Z
+
+
+
+
 
 
 
@@ -21,18 +16,19 @@ void rotateByOne(unsigned char *someString);
 
 
 
+
+
+
+
 int main() {
-    
-   
-    
     
     char userChoice = 0;
     printf("\n\n\nChoose an option:\n\n");
     printf("a). Have a pre-determined message encrypted with a rotation key of your choice.\n\n");
     printf("b). Have a message of your choosing encrypted with a rotation key of your choosing. ");
-    printf("Your encrypted message will then be decoded.\n\n");//i put the rest of option B here so my code didn't go off the edge the screen
+    printf("Your encrypted message will then be decoded.\n\n");
     scanf("%c", &userChoice);
-    if(userChoice < 'a' || userChoice > 'c') 
+    if(userChoice < 'a' || userChoice > 'd') 
     {
         printf("Incorrect choice. Terminating program.\n");
         return 0;
@@ -53,11 +49,12 @@ int main() {
             printf("The encrypted message: %s\n\n\n\n", string);
             break;    
         }
+        
         case 'b': 
         {
             int rotation = 1;
-            unsigned char string[100];
-            printf("Type a message that is to be encrypted. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            unsigned char string[200];
+            printf("Type a message. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
@@ -65,7 +62,6 @@ int main() {
             scanf("%d", &rotation);
             encryptRotation(string, rotation);
             printf("Your encrypted message: %s\n", string);
-            //decryption time
             int repetition = 1;
             int wordFound = 0;
             char i = 0;
@@ -77,7 +73,6 @@ int main() {
             {
                 
                 rotateByOne(string);
-                printf("%s     %d\n", string, repetition);
                 while(string[i] != '\0')
                 {
                     letter1 = string[i];
@@ -133,11 +128,45 @@ int main() {
             printf("Your message has been decrypted: %s\n", string);
             break;
         }
+        
+        
+        
         case 'c':
         {
+            unsigned char string[200];
+            printf("Type a message that you wish to be encrypted.\n")
+            scanf("%s", string);
+            putInSpaces(string);
+            printf("%s\n", string);
+            printf("you're a piece of fucking shit you know that");
+            char A = 0, B = 0, C = 0, D = 0, E = 0, F = 0, G = 0, H = 0, I = 0, J = 0, K = 0, L = 0, M = 0, N = 0, O = 0, P = 0, Q = 0;
+            // have function that takes the base string, the index remembering string, and the letter literals for the substitution
+            while(whole subbing thing while ignoring previously seen indexes)
+            if(string[i] == string2[1]
+            i++, 
+            if(string[i] == 'literal')
+            sub
+            i++
             
+            // ideas anyone? FUCKING FUCK FUCK FUCK
+            // get the user to type in a letter followed by another letter. You will swap these two letters as substitution. This can be repea
+            //ted up to 26 times or until the user types in "0" or some shit.
+            //then let them type a message and then you can fuck it up with their stupid fucking substitution. 
             
+        
+        
+        
+        
+        
+        
+        
+        
         }
+        case 'd';
+        {
+            //this is just fucking stupid
+            
+        }        
         default: {break;}
     
     }
@@ -157,14 +186,14 @@ void rotateByOne(unsigned char *someString)
     int i = 0;
     while(someString[i] != '\0')
     {
-        if(someString[i] == '.' || someString[i] == ' ')
+        if(someString[i] == '.' || someString[i] == ' ') 
         {
             i++;
         }
-        if(someString[i] == '.' || someString[i] == ' ')
+        if(someString[i] == '.' || someString[i] == ' ') 
         {
-            i++;
-        }
+            i++;                                         
+        }                                                
         someString[i] = someString[i] + 1;
         if(someString[i] > 122)
         {
@@ -376,6 +405,12 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
     return 0;
 }
 // FUNCTION DEFINITIONS
+
+
+
+
+
+
 
 
 
