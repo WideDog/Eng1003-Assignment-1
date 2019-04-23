@@ -12,6 +12,7 @@ void putInSpaces(unsigned char *someString);
 char spellCheck3(char letter1, char letter2, char letter3);
 char spellCheck4(char letter1, char letter2, char letter3, char letter4);
 void rotateByOne(unsigned char *someString);
+void substitute(unsigned char *someString, char originalLiteral, char literalSubstitute, unsigned char *memoryString);
 // FUNCTION PROTOTYPES
 
 
@@ -64,7 +65,7 @@ int main() {
             printf("Your encrypted message: %s\n", string);
             int repetition = 1;
             int wordFound = 0;
-            char i = 0;
+            int i = 0;
             char letter1 = 0;
             char letter2 = 0;
             char letter3 = 0;
@@ -134,24 +135,30 @@ int main() {
         case 'c':
         {
             unsigned char string[200];
-            printf("Type a message that you wish to be encrypted.\n")
+            printf("Type a message that you wish to be encrypted.\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
-            printf("you're a piece of fucking shit you know that");
-            char A = 0, B = 0, C = 0, D = 0, E = 0, F = 0, G = 0, H = 0, I = 0, J = 0, K = 0, L = 0, M = 0, N = 0, O = 0, P = 0, Q = 0;
-            // have function that takes the base string, the index remembering string, and the letter literals for the substitution
-            while(whole subbing thing while ignoring previously seen indexes)
-            if(string[i] == string2[1]
-            i++, 
-            if(string[i] == 'literal')
-            sub
-            i++
+            char substitutions[26];
+            int interfaceLetter = 65;
+            int i = 0;
+            while(i < 26)
+            {
+                printf("%c  ", interfaceLetter);
+                scanf(" %c", &substitutions[i]);
+                interfaceLetter++;
+                i++;
+            }
             
-            // ideas anyone? FUCKING FUCK FUCK FUCK
-            // get the user to type in a letter followed by another letter. You will swap these two letters as substitution. This can be repea
-            //ted up to 26 times or until the user types in "0" or some shit.
-            //then let them type a message and then you can fuck it up with their stupid fucking substitution. 
+            unsigned char indexMemory[200];
+            substitute(string, 'a', substitutions[0], indexMemory);
+            substitute(string, 'b', substitutions[1], indexMemory);
+            printf("%s\n", string);
+
+            
+            
+            
+           
             
         
         
@@ -162,7 +169,7 @@ int main() {
         
         
         }
-        case 'd';
+        case 'd':
         {
             //this is just fucking stupid
             
@@ -207,6 +214,7 @@ void rotateByOne(unsigned char *someString)
         }
 }
 
+
 void encryptRotation(unsigned char *someString, int someInteger) 
 {
     int i = 0;
@@ -234,10 +242,7 @@ void encryptRotation(unsigned char *someString, int someInteger)
     }
    
 }
-
     
-
-
 
 void putInSpaces(unsigned char *someString)
 {
@@ -252,6 +257,33 @@ void putInSpaces(unsigned char *someString)
     }
 
 }
+
+
+void substitute(unsigned char *someString, char originalLiteral, char literalSubstitute, unsigned char *memoryString)
+{
+    char originalUpperCase = 0;
+    char substituteUpperCase = 0;
+    originalUpperCase = originalLiteral - 32;
+    substituteUpperCase = literalSubstitute - 32;
+    int i = 0;
+    while(someString[i] != '\0')
+            {
+                if(someString[i] == originalLiteral && memoryString[i] != '-')
+                {
+                    someString[i] = literalSubstitute;
+                    memoryString[i] = '-';
+                }
+                if(someString[i] == originalUpperCase && memoryString[i] != '-')
+                {
+                    someString[i] = substituteUpperCase;
+                    memoryString[i] = '-';
+                }
+                i++;
+            }
+}
+
+
+
 
 char spellCheck3(char letter1, char letter2, char letter3)
 {
