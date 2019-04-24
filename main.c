@@ -77,7 +77,7 @@ int main() {
             printf("Enter the rotation number that you used to make the cipher.");
             scanf("%d", &rotation);
             decryptRotation(string, rotation);
-            printf("I assume your message was this: %s\n", string);
+            printf("I assume your message was: %s\n", string);
             break;
         }
         
@@ -165,11 +165,11 @@ int main() {
             }
             if(wordFound == 1)
             {
-                printf("Your message has been decrypted: %s\n", string);
+                printf("I assume your message was: %s\n", string);
             }
             if(wordFound != 1)
             {
-                printf("Decryption failed mb.");
+                printf("Decryption failed.\n");
             }
 
             break;
@@ -234,7 +234,32 @@ int main() {
         
         case 'e':
         {
-            
+            unsigned char indexMemory[200];
+            unsigned char string[200];
+            int letter = 'a';
+            int interfaceLetter = 'A';
+            char substitutions[26];
+            int i = 0;
+            printf("Type a substitution cipher. If you wish to put spaces in between words, use the '-' symbol instead.\n");
+            scanf("%s", string);
+            printf("You will now be prompted with the letters of the alphabet.\n");
+            printf("At each prompt, please enter the letter you used in your cipher alphabet to substitute the prompt-letter.\n");
+            while(i < 26)
+            {
+                printf("Substitution for %c:  ", interfaceLetter);
+                scanf(" %c", &substitutions[i]);
+                interfaceLetter++;
+                i++;
+            }
+            i = 0;
+            while(i < 26)
+            {
+                substitute(string, substitutions[i], letter, indexMemory);
+                letter++;
+                i++;
+            }
+            printf("I assume your message was: %s", string);
+            break;
         }
         
         
