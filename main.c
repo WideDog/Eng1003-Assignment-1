@@ -8,6 +8,7 @@
 
 // FUNCTION PROTOTYPES
 void encryptRotation(unsigned char *someString, int someInteger);
+void decryptRotation(unsigned char *someString, int someInteger);
 void putInSpaces(unsigned char *someString);
 char spellCheck3(char letter1, char letter2, char letter3);
 char spellCheck4(char letter1, char letter2, char letter3, char letter4);
@@ -25,33 +26,63 @@ int main() {
     
     char userChoice = 0;
     printf("\n\n\nChoose an option:\n\n");
-    printf("a). Have a pre-determined message encrypted with a rotation key of your choice.\n\n");
-    printf("b). Have a message of your choosing encrypted with a rotation key of your choosing. ");
-    printf("Your encrypted message will then be decoded.\n\n");
+    printf("a). Have a message of your choosing encrypted with a rotation key of your choosing.\n\n");
+    printf("b). decryption of rotation given text and rotation key\n\n");
+    printf("c). decryption of rotation given text only\n\n");
+    printf("d). encrpytion of cipher given text and substitution key\n\n");
+    printf("e). decryption of cipher given text and substitution key\n\n");
     scanf("%c", &userChoice);
-    if(userChoice < 'a' || userChoice > 'd') 
+    if(userChoice < 'a' || userChoice > 'e') 
     {
         printf("Incorrect choice. Terminating program.\n");
         return 0;
     }
-    printf("Thankyou.\n\n\n");
+    printf("\n\n\n");
     
     
     
     switch(userChoice) {
         case'a': 
         {
-            int rotation = 1;
-            unsigned char string[] = {'i', 't', ' ', 'b', 'e', ' ', 'l', 'i', 'k', 'e', ' ', 't', 'h', 'a', 't', '\0'};
-            printf("The unencrypted message: %s\n", string);
-            printf("Type a rotation key\n");
+            int rotation = 0;
+            unsigned char string[200];
+            printf("Type a message. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            scanf("%s", string);
+            putInSpaces(string);
+            printf("%s\n", string);
+            printf("Choose a rotation key.\n");
             scanf("%d", &rotation);
             encryptRotation(string, rotation);
-            printf("The encrypted message: %s\n\n\n\n", string);
-            break;    
+            printf("Your encrypted message: %s\n", string);
+            break;
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         case 'b': 
+        {
+            int rotation = 0;
+            unsigned char string[200];
+            
+            break;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        case 'c':
         {
             int rotation = 1;
             unsigned char string[200];
@@ -126,40 +157,64 @@ int main() {
                 i = 0;
                 repetition++;
             }
-            printf("Your message has been decrypted: %s\n", string);
+            if(wordFound == 1)
+            {
+                printf("Your message has been decrypted: %s\n", string);
+            }
+            if(wordFound != 1)
+            {
+                printf("Decryption failed mb.");
+            }
+
             break;
+
+            
+        
+        
         }
         
         
         
-        case 'c':
+        
+        
+        
+        case 'd':
         {
             unsigned char string[200];
             printf("Type a message that you wish to be encrypted.\n");
+            printf("If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
-            char substitutions[26];
-            int interfaceLetter = 65;
+            printf("You will now be prompted with the letters of the alphabet.\n");
+            printf("Each time a letter appears, type the letter you wish the prompt-letter to be replaced with during the encryption.\n");
+            printf("Remember: to create a proper substitution alphabet, you must only enter each letter of the alphabet once.\n");
+            printf("Also, please use lower case when entering your substitutions.\n\n");
+            char substitutions[26] = {'0'};
+            int interfaceLetter = 'A';
             int i = 0;
             while(i < 26)
             {
-                printf("%c  ", interfaceLetter);
+                printf("Letters you have typed:%s", substitutions);
+                printf("\nSubstitution for %c:  ", interfaceLetter);
                 scanf(" %c", &substitutions[i]);
                 interfaceLetter++;
                 i++;
             }
-            
+            i = 0;
+            int letter = 'a';
             unsigned char indexMemory[200];
-            substitute(string, 'a', substitutions[0], indexMemory);
-            substitute(string, 'b', substitutions[1], indexMemory);
+            while(i < 26)
+            {
+                substitute(string, letter, substitutions[i], indexMemory);
+                letter++;
+                i++;
+            }
+            
             printf("%s\n", string);
-
+            break;
             
-            
-            
-           
-            
+        }  
         
         
         
@@ -168,12 +223,19 @@ int main() {
         
         
         
-        }
-        case 'd':
+        
+        
+        
+        case 'e':
         {
-            //this is just fucking stupid
             
-        }        
+        }
+        
+        
+        
+        
+        
+        
         default: {break;}
     
     }
@@ -224,23 +286,53 @@ void encryptRotation(unsigned char *someString, int someInteger)
         {
             i++;
         }
-        if(someString[i] <= 90 && someString[i] >= 65 && someString[i] + someInteger > 90)
+        else if(someString[i] <= 90 && someString[i] >= 65 && someString[i] + someInteger > 90)
         {
             someString[i] = someString[i] + someInteger - 26;
             i++;
         }
-        if(someString[i] == ' ' || someString[i] == '.') 
+        else if(someString[i] <= 122 && someString[i] >= 97 && someString[i] + someInteger > 122)
+        {
+            someString[i] = someString[i] + someInteger - 26;
+            i++;
+        }
+        else
+        {
+            someString[i] = someString[i] + someInteger;
+            i++;
+        }
+    }
+   
+}
+
+
+
+
+void decryptRotation(unsigned char *someString, int someInteger)
+{
+    int i = 0;
+    while(someString[i] != '\0') 
+    {
+        if(someString[i] == '.' || someString[i] == ' ')
         {
             i++;
         }
-        someString[i] = someString[i] + someInteger;
-        if(someString[i] > 122)
+        else if(someString[i] <= 122 && someString[i] >= 97 && someString[i] - someInteger < 97)
         {
-            someString[i] = someString[i] - 26;
+            someString[i] = someString[i] - someInteger + 26;
+            i++;
         }
-        i++;
+        else if(someString[i] <= 90 && someString[i] >= 65 && someString[i] - someInteger < 65)
+        {
+            someString[i] = someString[i] - someInteger + 26;
+            i++;
+        }
+        else
+        {
+          someString[i] = someString[i] - someInteger;
+          i++;
+        }
     }
-   
 }
     
 
