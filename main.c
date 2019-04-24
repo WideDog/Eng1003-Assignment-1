@@ -71,7 +71,13 @@ int main() {
         {
             int rotation = 0;
             unsigned char string[200];
-            
+            printf("Type a rotation cipher. If you wish to use spaces in between words, use a '-' symbol instead.\n");
+            scanf("%s", string);
+            putInSpaces(string);
+            printf("Enter the rotation number that you used to make the cipher.");
+            scanf("%d", &rotation);
+            decryptRotation(string, rotation);
+            printf("I assume your message was this: %s\n", string);
             break;
         }
         
