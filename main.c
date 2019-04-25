@@ -27,11 +27,11 @@ int main() {
     
     char userChoice = 0;
     printf("\n\n\nChoose an option:\n\n");
-    printf("a). Have a message of your choosing encrypted with a rotation key of your choosing.\n\n");
-    printf("b). decryption of rotation given text and rotation key\n\n");
-    printf("c). decryption of rotation given text only\n\n");
-    printf("d). encrpytion of cipher given text and substitution key\n\n");
-    printf("e). decryption of cipher given text and substitution key\n\n");
+    printf("a). Have a message encrypted with a rotation key of your choosing.\n\n");
+    printf("b). Have a rotation cipher decrypted after inputting both the cipher and the rotation key.\n\n");
+    printf("c). Have a rotation cipher decrpyted after inputting the cipher.\n\n");
+    printf("d). Have a message encrypted with a substitution key of your choosing.\n\n");
+    printf("e). Have a substitution cypher decrypted after inputting both the cipher and the substitution key.\n\n");
     scanf("%c", &userChoice);
     if(userChoice < 'a' || userChoice > 'e') 
     {
@@ -47,7 +47,7 @@ int main() {
         {
             int rotation = 0;
             unsigned char string[200];
-            printf("Type a message. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            printf("Type a message. If you wish to put spaces in between words, use a '=' symbol instead of a space.\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
@@ -59,40 +59,25 @@ int main() {
         }
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         case 'b': 
         {
             int rotation = 0;
             unsigned char string[200];
-            printf("Type a rotation cipher. If you wish to use spaces in between words, use a '-' symbol instead.\n");
+            printf("Type a rotation cipher. If you wish to use spaces in between words, use a '=' symbol instead.\n");
             scanf("%s", string);
             putInSpaces(string);
-            printf("Enter the rotation number that you used to make the cipher.");
+            printf("Enter the rotation number that was used to make the cipher.");
             scanf("%d", &rotation);
             decryptRotation(string, rotation);
             printf("I assume your message was: %s\n", string);
             break;
         }
         
-        
-        
-        
-        
-        
-        
-        
+    
         case 'c':
         {
             int rotation = 1;
-            unsigned char string[200];
+            unsigned char string[1500];
             int repetition = 1;
             int wordFound = 0;
             int i = 0;
@@ -101,7 +86,8 @@ int main() {
             char letter3 = 0;
             char letter4 = 0;
             char letter5 = 0;
-            printf("Type a message. If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            printf("Type a rotation cipher. If you wish to put spaces in between words, use a '=' symbol instead of a space.\n");
+            printf("Please ensure you are using correct spelling, grammar and punctuation (ignoring of course the equal symbols used for spaces).\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
@@ -119,19 +105,23 @@ int main() {
                     i++;
                     if(spellCheck3(letter1, letter2, letter3) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter2 = string[i];
                     i++;
                     if(spellCheck3(letter1, letter2, letter3) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter3 = string[i];
                     i++; 
                     if(spellCheck3(letter1, letter2, letter3) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
+                        
                     }
                 }
                 
@@ -140,31 +130,40 @@ int main() {
                 letter3 = 0;
                 i = 0;
                 
+                
+                
+                
+                
                 while(string[i] != '\0')
                 {
                     letter1 = string[i];
                     i++;
                     if(spellCheck4(letter1, letter2, letter3, letter4) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter2 = string[i];
                     i++;
                     if(spellCheck4(letter1, letter2, letter3, letter4) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter3 = string[i];
                     i++; 
                     if(spellCheck4(letter1, letter2, letter3, letter4) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter4 = string[i];
                     i++;
                     if(spellCheck4(letter1, letter2, letter3, letter4) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
+                        
                     }
                 }
                 
@@ -180,33 +179,47 @@ int main() {
                     i++;
                     if(spellCheck5(letter1, letter2, letter3, letter4, letter5) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter2 = string[i];
                     i++;
                     if(spellCheck5(letter1, letter2, letter3, letter4, letter5) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter3 = string[i];
                     i++;
                     if(spellCheck5(letter1, letter2, letter3, letter4, letter5) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter4 = string[i];
                     i++;
                     if(spellCheck5(letter1, letter2, letter3, letter4, letter5) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
                     letter5 = string[i];
                     i++;
                     if(spellCheck5(letter1, letter2, letter3, letter4, letter5) == 1)
                     {
-                        wordFound = 1; break;
+                        wordFound = 1;
+                        break;
                     }
+                
                 }
+                
+                letter1 = 0;
+                letter2 = 0;
+                letter3 = 0;
+                letter4 = 0;
+                letter5 = 0;
+                i = 0;
+                
                 repetition++;
                 
             }
@@ -219,25 +232,17 @@ int main() {
                 printf("Decryption failed.\n");
             }
             break;
-
-            
-        
-        
         }
-        
-        
-        
-        
         
         
         case 'd':
         {
-            unsigned char string[200];
+            unsigned char string[1500];
             char substitutions[26] = {'0'};
             int interfaceLetter = 'A';
             int i = 0;
             printf("Type a message that you wish to be encrypted.\n");
-            printf("If you wish to put spaces in between words, use a '-' symbol instead of a space.\n");
+            printf("If you wish to put spaces in between words, use a '=' symbol instead of a space.\n");
             scanf("%s", string);
             putInSpaces(string);
             printf("%s\n", string);
@@ -255,7 +260,7 @@ int main() {
             }
             i = 0;
             int letter = 'a';
-            unsigned char indexMemory[200];
+            unsigned char indexMemory[1500];
             while(i < 26)
             {
                 substitute(string, letter, substitutions[i], indexMemory);
@@ -269,27 +274,19 @@ int main() {
         }  
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         case 'e':
         {
-            unsigned char indexMemory[200];
-            unsigned char string[200];
+            unsigned char indexMemory[1500];
+            unsigned char string[1500];
             int letter = 'a';
             int interfaceLetter = 'A';
             char substitutions[26];
             int i = 0;
-            printf("Type a substitution cipher. If you wish to put spaces in between words, use the '-' symbol instead.\n");
+            printf("Type a substitution cipher. If you wish to put spaces in between words, use the '=' symbol instead.\n");
             scanf("%s", string);
             printf("You will now be prompted with the letters of the alphabet.\n");
             printf("At each prompt, please enter the letter you used in your cipher alphabet to substitute the prompt-letter.\n");
+            printf("Also, please use lower case when entering your substitutions.\n\n");
             while(i < 26)
             {
                 printf("Substitution for %c:  ", interfaceLetter);
@@ -309,12 +306,10 @@ int main() {
         }
         
         
-        
-        
-        
-        
-        default: {break;}
-    
+        default:
+        {
+            break;
+        }
     }
     
     
@@ -332,7 +327,11 @@ void rotateByOne(unsigned char *someString)
     int i = 0;
     while(someString[i] != '\0')
     {
-        if(someString[i] == '.' || someString[i] == ' ') 
+        if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
+        {
+            i++;
+        }
+        else if(someString[i] == '(' || someString[i] == ')' || someString[i] == ';' || someString[i] == ':' || someString[i] == '-' || someString[i] == ',')
         {
             i++;
         }
@@ -361,7 +360,11 @@ void encryptRotation(unsigned char *someString, int someInteger)
     int i = 0;
     while(someString[i] != '\0') 
     {
-        if(someString[i] == ' ' || someString[i] == '.') 
+        if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
+        {
+            i++;
+        }
+        else if(someString[i] == '(' || someString[i] == ')' || someString[i] == ';' || someString[i] == ':' || someString[i] == '-' || someString[i] == ',')
         {
             i++;
         }
@@ -392,7 +395,11 @@ void decryptRotation(unsigned char *someString, int someInteger)
     int i = 0;
     while(someString[i] != '\0') 
     {
-        if(someString[i] == '.' || someString[i] == ' ')
+        if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
+        {
+            i++;
+        }
+        else if(someString[i] == '(' || someString[i] == ')' || someString[i] == ';' || someString[i] == ':' || someString[i] == '-' || someString[i] == ',')
         {
             i++;
         }
@@ -420,7 +427,7 @@ void putInSpaces(unsigned char *someString)
     int i = 0;
     while(someString[i] != '\0') 
     {
-        if(someString[i] == '-') 
+        if(someString[i] == '=') 
         {
             someString[i] = ' ';
         }
@@ -470,22 +477,6 @@ char spellCheck3(char letter1, char letter2, char letter3)
     {
         return 1;
     }
-            
-            
-            
-    if(letter1 == 't' && letter2 == 'h' && letter3 == 'e')
-    {
-        return 1;
-    }
-    if(letter2 == 't' && letter3 == 'h' && letter1 == 'e')
-    {
-        return 1;
-    }
-    if(letter3 == 't' && letter1 == 'h' && letter2 == 'e')
-    {
-        return 1;
-    } 
-    
             
     return 0;
 }
@@ -758,26 +749,189 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
         return 1;
     }
     
+
+    
+    if(letter1 == ' ' && letter2 == 'I' && letter3 == 'n' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'I' && letter4 == 'n' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'I' && letter1 == 'n' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'I' && letter2 == 'n' && letter3 == ' ')
+    {
+        return 1;
+    }
+    
+
+    
+    if(letter1 == ' ' && letter2 == 'T' && letter3 == 'o' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'T' && letter4 == 'o' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'T' && letter1 == 'o' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'T' && letter2 == 'o' && letter3 == ' ')
+    {
+        return 1;
+    }
     
     
-    if(letter1 == ' ' && letter2 == 'i' && letter3 == 't' && letter4 == '.')
-    {
-       return 1;
-    }
-    if(letter2 == ' ' && letter3 == 'i' && letter4 == 't' && letter1 == '.')
+    
+    if(letter1 == ' ' && letter2 == 'B' && letter3 == 'e' && letter4 == ' ')
     {
         return 1;
     }
-    if(letter3 == ' ' && letter4 == 'i' && letter1 == 't' && letter2 == '.')
+    if(letter2 == ' ' && letter3 == 'B' && letter4 == 'e' && letter1 == ' ')
     {
         return 1;
     }
-    if(letter4 == ' ' && letter1 == 'i' && letter2 == 't' && letter3 == '.')
+    if(letter3 == ' ' && letter4 == 'B' && letter1 == 'e' && letter2 == ' ')
     {
         return 1;
     }
+    if(letter4 == ' ' && letter1 == 'B' && letter2 == 'e' && letter3 == ' ')
+    {
+        return 1;
+    }
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'O' && letter3 == 'f' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'O' && letter4 == 'f' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'O' && letter1 == 'f' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'O' && letter2 == 'f' && letter3 == ' ')
+    {
+        return 1;
+    } 
+    
+
+    
+    if(letter1 == ' ' && letter2 == 'D' && letter3 == 'o' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'D' && letter4 == 'o' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'D' && letter1 == 'o' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'D' && letter2 == 'o' && letter3 == ' ')
+    {
+        return 1;
+    }
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'O' && letter3 == 'n' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'O' && letter4 == 'n' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'O' && letter1 == 'n' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'O' && letter2 == 'n' && letter3 == ' ')
+    {
+        return 1;
+    } 
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'A' && letter3 == 'n' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'A' && letter4 == 'n' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'A' && letter1 == 'n' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'A' && letter2 == 'n' && letter3 == ' ')
+    {
+        return 1;
+    } 
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'A' && letter3 == 't' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'A' && letter4 == 't' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'A' && letter1 == 't' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'A' && letter2 == 't' && letter3 == ' ')
+    {
+        return 1;
+    }
+
+    
+    
+    if(letter1 == ' ' && letter2 == 'A' && letter3 == 's' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'A' && letter4 == 's' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'A' && letter1 == 's' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'A' && letter2 == 's' && letter3 == ' ')
+    {
+        return 1;
+    } 
+    
+    
+    
+    
+    
+    
+    
     return 0;
 }
+
+
+
+
 
 
 char spellCheck5(char letter1, char letter2, char letter3, char letter4, char letter5)
@@ -829,6 +983,75 @@ char spellCheck5(char letter1, char letter2, char letter3, char letter4, char le
         
         
         
+    if(letter1 == ' ' && letter2 == 'f' && letter3 == 'o' && letter4 == 'r' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'f' && letter2 == 'o' && letter3 == 'r' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'f' && letter1 == 'o' && letter2 == 'r' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'f' && letter5 == 'o' && letter1 == 'r' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'f' && letter4 == 'o' && letter5 == 'r' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'c' && letter3 == 'a' && letter4 == 'n' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'c' && letter2 == 'a' && letter3 == 'n' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'c' && letter1 == 'a' && letter2 == 'n' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'c' && letter5 == 'a' && letter1 == 'n' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'c' && letter4 == 'a' && letter5 == 'n' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'y' && letter3 == 'o' && letter4 == 'u' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'y' && letter2 == 'o' && letter3 == 'u' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'y' && letter1 == 'o' && letter2 == 'u' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'y' && letter5 == 'o' && letter1 == 'u' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'y' && letter4 == 'o' && letter5 == 'u' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    
+    
     if(letter1 == ' ' && letter2 == 'T' && letter3 == 'h' && letter4 == 'e' && letter5 == ' ')
     {
         return 1;  
@@ -845,8 +1068,54 @@ char spellCheck5(char letter1, char letter2, char letter3, char letter4, char le
     {
         return 1;  
     }
-
     if(letter2 == ' ' && letter3 == 'T' && letter4 == 'h' && letter5 == 'e' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'F' && letter3 == 'o' && letter4 == 'r' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'F' && letter2 == 'o' && letter3 == 'r' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'F' && letter1 == 'o' && letter2 == 'r' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'F' && letter5 == 'o' && letter1 == 'r' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'F' && letter4 == 'o' && letter5 == 'r' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    
+    
+    if(letter1 == ' ' && letter2 == 'Y' && letter3 == 'o' && letter4 == 'u' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'Y' && letter2 == 'o' && letter3 == 'u' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'Y' && letter1 == 'o' && letter2 == 'u' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'Y' && letter5 == 'o' && letter1 == 'u' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'Y' && letter4 == 'o' && letter5 == 'u' && letter1 == ' ')
     {
         return 1;  
     }
