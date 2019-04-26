@@ -9,7 +9,6 @@
 // FUNCTION PROTOTYPES
 void encryptRotation(char *someString, int someInteger);
 void decryptRotation(char *someString, int someInteger);
-void putInSpaces(char *someString);
 char spellCheck4(char letter1, char letter2, char letter3, char letter4);
 char spellCheck5(char letter1, char letter2, char letter3, char letter4, char letter5);
 char spellCheck6(char letter1, char letter2, char letter3, char letter4, char letter5, char letter6);
@@ -33,12 +32,15 @@ int main() {
     printf("d). Have a message encrypted with a substitution key of your choosing.\n\n");
     printf("e). Have a substitution cypher decrypted after inputting both the cipher and the substitution key.\n\n");
     scanf("%c", &userChoice);
-    fgetc(stdin);
+                        /* The previous code is just for a user interface. */
+    fgetc(stdin);       /* I put fgetc here because for some reason without it I cannot use the fgets function. I use fgets because it scans whitespace.
+                           fgetc() seems to act like some kind of fget initialisation and I really do not understand why.*/
     if(userChoice < 'a' || userChoice > 'h') 
     {
-        printf("Incorrect choice. Terminating program.\n");
+        printf("Incorrect choice. Terminating program.\n");  /* This is here just incase the user inputs the wrong letter. */
         return 0;
     }
+    
     printf("\n\n\n");
     
     
@@ -46,16 +48,19 @@ int main() {
     switch(userChoice) {
         case'a': 
         {
-            int rotation = 0;
-            char string[1500];
+            int rotation = 0;   // A variable where the user's choice of rotation key is kept.
+            char string[1500];  // The string the user's input message is kept in.
             printf("Type a message.\n");
             fgets(string, 1500, stdin);
             printf("%s\n", string);
             printf("Choose a rotation key.\n");
             scanf("%d", &rotation);
             encryptRotation(string, rotation);
-            printf("Your message encrypted: %s\n", string);
+            printf("Your message has been encrypted: %s\n", string);
             break;
+            
+                /* This code just takes a user input message and rotates it by an integer that the user inputs. It then outputs the cipher.
+                   The encryptRotation() function is what encrypts the message. It is explained at its function definition. */
         }
         
         
@@ -71,27 +76,36 @@ int main() {
             printf("I assume your message was: %s\n", string);
             break;
         }
-        
+                /* This code takes a user input rotation cipher and then decrypts it after the user has input the key that was used to make the cipher.
+                   It then outputs the decrypted message. The decryptRotation() function is what decrypts the message and is explained at its function
+                   definition. */
     
         case 'c':
         {
-            char string[1500];
-            int repetition = 1;
-            int wordFound = 0;
-            int i = 0;
+            char string[1500];  // The string where the user's input rotation cipher is kept. 
+            int repetition = 1; // This is used in a while loop soon. It stops after 26 repetitions.
+            int wordFound = 0;  // If the code finds a word during its decryption, wordFound becomes 1, and the decryption stops. 
+            int i = 0;          // i for index.
             char letter1 = 0;
             char letter2 = 0;
-            char letter3 = 0;
+            char letter3 = 0;       
             char letter4 = 0;
             char letter5 = 0;
-            char letter6 = 0;
+            char letter6 = 0;   /* These letter varaibles are used as storage spaces to remember the past few elements of the string during decryption. */
             printf("Type a rotation cipher.\n");
             fgets(string, 1500, stdin);
+                                /* The following code is the decrpytion of the cipher. It is a while loop (referred to as Big Loop from now on)
+                                   that contains 3 other while loops. None of the three other loops are nested within one another,
+                                   they are each nested only in the Big Loop. The Big Loop rotates the user's cipher by 1, and the 3 other loops spell check the
+                                   resultant string. This is repeated until The Big Loop has rotated the user's cipher into a string that contains
+                                   words that can be picked up by one of the spell checking loops. If none of the rotations have words that can be detected
+                                   by the spell checking loops, the decryption has failed. A description how the spell checking loops work has been included
+                                   at the end of the first spell checking loop. */
             while(repetition < 26 && wordFound != 1)
             {
                 
-                rotateByOne(string);
-                while(string[i] != '\0')
+                rotateByOne(string); // This function rotates the letters within a string by 1.
+                while(string[i] != '\0') // This is the first spell check function. It is described below.
                 {
                     letter1 = string[i];
                     i++;
@@ -119,8 +133,7 @@ int main() {
                     if(spellCheck4(letter1, letter2, letter3, letter4) == 1)
                     {
                         wordFound = 1;
-                        break;
-                        
+                        break; 
                     }
                 }
                 
@@ -129,7 +142,24 @@ int main() {
                 letter3 = 0;
                 letter4 = 0;
                 i = 0;
-                
+                                   /* The loop above reads through the string while remembering the most recent 4 consecutive elements that it has read. 
+                                      The 4 consecutive elements are stored in the letter1-letter4 variables.
+                                      Each time one of the letter variables is updated, the spellCheck4 function looks at the 4 consecutive
+                                      elements and decides if there is a word in them. That is what the IF statements are for.
+                                      spellCheck4 returns 1 if it can see a word, and returns 0 if it cannot. 
+                                      If spellCheck4 detects a word within the 4 most recent consecutive elements, wordFound becomes 1 and the break
+                                      statement takes the program out of the spell checking loop. wordFound being at the value of 1 takes the program
+                                      out of the Big Loop and the decryption is complete. The string that contained the word is then output to the
+                                      screen.
+                                      The spellCheck4 function only looks for 2 letter words that are encompassed by a space bar at the start and
+                                      at the end of the word.
+                                      The spellCheck5 function looks for 3 letter words surrounded by a space bars, and the spellCheck6 function
+                                      looks for 4 letter words surrounded by space bars. 
+                                      The following spell checking loops are almost identical to the spell checking loop that wasjust described.
+                                      The only difference is that one uses spellCheck5 and the other uses spellCheck6. 
+                                      After each spell checking loop has completed, the variables used in the loop are reset to 0 because they
+                                      will be used again by the following loop. If the letters were not reset, it would interfere in spell checking,
+                                      and if i was not reset, the following loop would not read through the string. */
                 while(string[i] != '\0')
                 {
                     letter1 = string[i];
@@ -250,12 +280,14 @@ int main() {
         
         case 'd':
         {
-            char string[1500];
-            char substitutions[26] = {'0'};
-            int interfaceLetter = 'A';
-            int i = 0;
-            int letter = 'A';
-            char indexMemory[1500];
+            char string[1500];              // The string the user's input is kept in.
+            char substitutions[26] = {'0'}; // This is a string that will hold the user's substitution alphabet.
+            int interfaceLetter = 'A';      // This is used as an output when the user is entering their substitution alphabet.
+            int i = 0;                      // i for index.
+            int letter = 'A';               // This is used in the substitution function. 
+            char indexMemory[1500];         
+            // The substitution() function needs to know at what indexes it has replaced letters in a string in the past. The indexMemory string keeps a record 
+            // of the indexes where the substitution function has changed a letter.
             printf("Type a message that you wish to be encrypted.\n");
             fgets(string, 1500, stdin);
             printf("You will now be prompted with the letters of the alphabet.\n");
@@ -367,7 +399,7 @@ int main() {
 // FUNCTION DEFINITIONS
 void rotateByOne(char *someString)
 {
-    int i = 0;
+    int i = 0; //i for index
     while(someString[i] != '\0')
     {
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
@@ -389,13 +421,23 @@ void rotateByOne(char *someString)
             i++;
         }
     }
+    /* As the name hopefully suggests, this function rotates the letters in a string of words by a key of 1. A turns into B, B turns into C and so on.
+    The while condition ensures that the string is read in its entirety. The loop contains an IF, 2 ELSE IFS, and an ELSE that check each of the 3 possible
+    scenariors that can occur each time the string at index i is read. The IF and the first IF ELSE check for the scenario at which the string element at i
+    is a grammatical feature. If this is the case, the element at i will be left and unchanged, and i will be incremented; effectively skipping over that element.
+    This is because only letters are to be changed, and not grammatical features such as space bars and whatnot. The second ELSE IF checks for
+    the scenario at which the element at i is a letter that will be greater than ASCII 90 (Z) if it is incremented by 1. If this is the case, the element is 
+    incremented by 1, then reduced by 26 to take it back into the ASCII alphabet. i is then incremented.For this function, this scenario only occurs 
+    when the string element at i is Z.
+    The ELSE at the end is for the only possible scenario left after the previous IFs are checked. That is if the element at i is just a letter that can
+    be incremented by one without leaving the boundaries of ASCII 65-ASCII 90. If this is the case, the element at i is incremented by 1, and so is i. */
 
 }
 
 
 void encryptRotation(char *someString, int someInteger) 
 {
-    int i = 0;
+    int i = 0; // i for index
     while(someString[i] != '\0') 
     {
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
@@ -417,6 +459,17 @@ void encryptRotation(char *someString, int someInteger)
             i++;
         }
     }
+    /* This function works almost identically to rotateByOne(). The only difference is that when a letter is changed, it is increased by 'someInteger' 
+    rather than 1. Its purpose is to take a string of regular words and then turn it into a rotation cipher using the key held by the value of someInteger. 
+    The while condition ensures that the string is read in its entirety. The loop contains an IF, 2 ELSE IFS, and an ELSE that check each of the 3 possible
+    scenariors that can occur each time the string at index i is read. The IF and the first IF ELSE check for the scenario at which the string element at i
+    is a grammatical feature. If this is the case, the element at i will be left and unchanged, and i will be incremented; effectively skipping over that element.
+    This is because only letters are to be changed, and not grammatical features such as space bars and whatnot.
+    The second ELSE IF checks for the scenario at which the element at i is a letter that will be greater than ASCII 90 (Z) if it is incremented by someInteger.
+    If this is the case, the element is incremented by the value of someInteger, then reduced by 26 to take it back into the ASCII alphabet.
+    i is then incremented. The ELSE at the end is for the only possible scenario left after the previous IFs are checked. That is if the element at i is
+    just a letter that can be incremented by someInteger without leaving the boundaries of ASCII 65-ASCII 90. If this is the case, the element at i is
+    incremented by someInteger, and i is incremented by 1. */
    
 }
 
@@ -425,7 +478,7 @@ void encryptRotation(char *someString, int someInteger)
 
 void decryptRotation(char *someString, int someInteger)
 {
-    int i = 0;
+    int i = 0; // i for index
     while(someString[i] != '\0') 
     {
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
@@ -447,22 +500,20 @@ void decryptRotation(char *someString, int someInteger)
           i++;
         }
     }
+    /* This function works almost identically to encryptRotation(). The only difference is that when a letter is changed, it is decreased by 'someInteger' 
+    rather increased by someInteger. Its purpose is to take a rotation cipher and take it back to its original text using the key used to rotate it.
+    The while condition ensures that the string is read in its entirety. The loop contains an IF, 2 ELSE IFS, and an ELSE that check each of the 3 possible
+    scenariors that can occur each time the string at index i is read. The IF and the first IF ELSE check for the scenario at which the string element at i
+    is a grammatical feature. If this is the case, the element at i will be left and unchanged, and i will be incremented; effectively skipping over that element.
+    This is because only letters are to be changed, and not grammatical features such as space bars and whatnot.
+    The second ELSE IF checks for the scenario at which the element at i is a letter that will be less than ASCII 65 (A) if it is decreased by someInteger.
+    If this is the case, the element is decreased by the value of someInteger, then increased by 26 to take it back into the ASCII alphabet.
+    i is then incremented. The ELSE at the end is for the only possible scenario left after the previous IFs are checked. That is if the element at 
+    i is just a letter that can be decreased by someInteger without leaving the boundaries of ASCII 65-ASCII 90. If this is the case,
+    the element at i is decreased by someInteger, and i is incremented by 1. */
 }
     
 
-void putInSpaces(char *someString)
-{
-    int i = 0;
-    while(someString[i] != '\0') 
-    {
-        if(someString[i] == '=') 
-        {
-            someString[i] = ' ';
-        }
-    i++;
-    }
-
-}
 
 
 void substitute(char *someString, char originalLiteral, char literalSubstitute, char *memoryString)
@@ -477,6 +528,7 @@ void substitute(char *someString, char originalLiteral, char literalSubstitute, 
                 }
                 i++;
             }
+    /* */
 }
 
 
@@ -571,7 +623,7 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
     
     return 0;
 }
-
+/* */
 
 
 
