@@ -32,12 +32,12 @@ int main() {
     printf("d). Have a message encrypted with a substitution key of your choosing.\n\n");
     printf("e). Have a substitution cypher decrypted after inputting both the cipher and the substitution key.\n\n");
     scanf("%c", &userChoice);
-                        /* The previous code is just for a user interface. */
-    fgetc(stdin);       /* I put fgetc here because for some reason without it I cannot use the fgets function. I use fgets because it scans whitespace.
+                        /* The previous code is for a user interface. */
+    fgetc(stdin);       /* I put fgetc here because for some reason without it I could use the fgets function. I used fgets because it scans whitespace.
                            fgetc() seems to act like some kind of fget initialisation and I really do not understand why.*/
     if(userChoice < 'a' || userChoice > 'h') 
     {
-        printf("Incorrect choice. Terminating program.\n");  /* This is here just incase the user inputs the wrong letter. */
+        printf("Incorrect choice. Terminating program.\n");  /* This is here incase the user inputs the wrong letter. */
         return 0;
     }
     
@@ -49,9 +49,9 @@ int main() {
         case'a': 
         {
             int rotation = 0;   // A variable where the user's choice of rotation key is kept.
-            char string[1500];  // The string the user's input message is kept in.
+            char string[1500];  // The string where the user's input message is kept.
             printf("Type a message.\n");
-            fgets(string, 1500, stdin);
+            fgets(string, 1500, stdin); // Scans a user input message and stores it in 'string'.
             printf("%s\n", string);
             printf("Choose a rotation key.\n");
             scanf("%d", &rotation);
@@ -59,7 +59,7 @@ int main() {
             printf("Your message has been encrypted: %s\n", string);
             break;
             
-                /* This code just takes a user input message and rotates it by an integer that the user inputs. It then outputs the cipher.
+                /* This code takes a user input message and rotates it by an integer that the user inputs. It then outputs the cipher.
                    The encryptRotation() function is what encrypts the message. It is explained at its function definition. */
         }
         
@@ -83,7 +83,7 @@ int main() {
         case 'c':
         {
             char string[1500];  // The string where the user's input rotation cipher is kept. 
-            int repetition = 1; // This is used in a while loop soon. It stops after 26 repetitions.
+            int repetition = 1; // This is used in a while loop soon. The loop stops after 26 repetitions.
             int wordFound = 0;  // If the code finds a word during its decryption, wordFound becomes 1, and the decryption stops. 
             int i = 0;          // i for index.
             char letter1 = 0;
@@ -99,13 +99,13 @@ int main() {
                                    they are each nested only in the Big Loop. The Big Loop rotates the user's cipher by 1, and the 3 other loops spell check the
                                    resultant string. This is repeated until The Big Loop has rotated the user's cipher into a string that contains
                                    words that can be picked up by one of the spell checking loops. If none of the rotations have words that can be detected
-                                   by the spell checking loops, the decryption has failed. A description how the spell checking loops work has been included
+                                   by the spell checking loops, the decryption has failed. A description of how the spell checking loops work has been included
                                    at the end of the first spell checking loop. */
             while(repetition < 26 && wordFound != 1)
             {
                 
                 rotateByOne(string); // This function rotates the letters within a string by 1.
-                while(string[i] != '\0') // This is the first spell check function. It is described below.
+                while(string[i] != '\0') // This is the first spell checking loop. It is described below.
                 {
                     letter1 = string[i];
                     i++;
@@ -144,7 +144,7 @@ int main() {
                 i = 0;
                                    /* The loop above reads through the string while remembering the most recent 4 consecutive elements that it has read. 
                                       The 4 consecutive elements are stored in the letter1-letter4 variables.
-                                      Each time one of the letter variables is updated, the spellCheck4 function looks at the 4 consecutive
+                                      Each time one of the letter variables is updated, the spellCheck4 function looks at the 4 most recent consecutive
                                       elements and decides if there is a word in them. That is what the IF statements are for.
                                       spellCheck4 returns 1 if it can see a word, and returns 0 if it cannot. 
                                       If spellCheck4 detects a word within the 4 most recent consecutive elements, wordFound becomes 1 and the break
@@ -153,9 +153,9 @@ int main() {
                                       screen.
                                       The spellCheck4 function only looks for 2 letter words that are encompassed by a space bar at the start and
                                       at the end of the word.
-                                      The spellCheck5 function looks for 3 letter words surrounded by a space bars, and the spellCheck6 function
+                                      The spellCheck5 function looks for 3 letter words surrounded by space bars, and the spellCheck6 function
                                       looks for 4 letter words surrounded by space bars. 
-                                      The following spell checking loops are almost identical to the spell checking loop that wasjust described.
+                                      The following spell checking loops are almost identical to the spell checking loop that was just described.
                                       The only difference is that one uses spellCheck5 and the other uses spellCheck6. 
                                       After each spell checking loop has completed, the variables used in the loop are reset to 0 because they
                                       will be used again by the following loop. If the letters were not reset, it would interfere in spell checking,
@@ -286,8 +286,8 @@ int main() {
             int i = 0;                      // i for index.
             int letter = 'A';               // This is used in the substitution function. 
             char indexMemory[1500];         
-            // The substitution() function needs to know at what indexes it has replaced letters in a string in the past. The indexMemory string keeps a record 
-            // of the indexes where the substitution function has changed a letter.
+            /* The substitute() function needs to know at what indexes it has replaced letters in 'string' during the past. The indexMemory string keeps a
+               record of the indexes where the substitution function has changed a letter. */
             printf("Type a message that you wish to be encrypted.\n");
             fgets(string, 1500, stdin);
             printf("You will now be prompted with the letters of the alphabet.\n");
@@ -303,13 +303,22 @@ int main() {
                 i++;
             }
             i = 0;
+                /* The while loop above prints a letter of the alphabet starting at A and then takes a letter input from the user. The input is stored in the
+                   'substitutions' array. The letter the user input for example when the program output 'A' will be the letter that replaces all A's in 
+                   the string during the process of encryption. i is reset to 0 as it is used in the next loop.*/
             while(i < 26)
             {
                 substitute(string, letter, substitutions[i], indexMemory);
                 letter++;
                 i++;
             }
-            
+               /* The while loop above encrypts the user's message using their substitution alphabet via the 'substitute' function. The function only substitutes
+                  one unique letter for another each time it is called, so it must be repeatedly used to completely encrypt a message. The second argument is
+                  the letter in 'string' that will be substituted by the letter held in the third argument. On substitute()'s first call in this loop, 'letter' has
+                  the value of 'A', and substitute[i] has the value held in substitute[0] (i = 0 at this point). The value held in substitute[0] is the letter the
+                  user input when prompted with the letter 'A'. On the second use, 'letter' has been incremented by 1, and so has i, and so it moves onto replacing
+                  all the Bs in the string with whatever the user input when prompted with 'B'. This continues until the substitution encryption is complete. 
+                  The function is further explained at its function definition. */
             printf("%s\n", string);
             break;
             
@@ -318,12 +327,12 @@ int main() {
         
         case 'e':
         {
-            char indexMemory[1500];
-            char string[1500];
-            int letter = 'A';
-            int interfaceLetter = 'A';
-            char substitutions[26];
-            int i = 0;
+            char indexMemory[1500]; // The substitute() function is used again here so again it requires a memory string. 
+            char string[1500];      // The string where the user's input is kept. 
+            int letter = 'A';       // This is used in the substitute function.
+            int interfaceLetter = 'A';  // This is used as an output when the user inputs their substitution alphabet. 
+            char substitutions[26];   // This is where the user's substitution alphabet is kept. 
+            int i = 0;                // i for index.
             printf("Type a substitution cipher.\n");
             fgets(string, 1500, stdin);
             printf("You will now be prompted with the letters of the alphabet.\n");
@@ -337,12 +346,17 @@ int main() {
                 i++;
             }
             i = 0;
+              /* The loop above is identical to the user input loop in case 'd'. It scans and stores the user's substitution alphabet in substitutions[].
+                 i is reset to 0 because it is used in the following loop.*/
             while(i < 26)
             {
                 substitute(string, substitutions[i], letter, indexMemory);
                 letter++;
                 i++;
             }
+              /* The loop above is almost identical to the loop in case 'd'. The only difference is that substitutions[i] is now the second argument, and letter
+                 third argument. This means that on the functions first use in the loop, whatever the user's substitution for 'A' used in 
+                 their cipher will now be replaced with A. This is repeated for each letter of the alphabet. */ 
             printf("I assume your message was: %s", string);
             break;
         }
@@ -401,7 +415,7 @@ void rotateByOne(char *someString)
 {
     int i = 0; //i for index
     while(someString[i] != '\0')
-    {
+    {                                                                                                    /* ASCII 39 is the ' symbol */
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
         {
             i++;
@@ -421,7 +435,7 @@ void rotateByOne(char *someString)
             i++;
         }
     }
-    /* As the name hopefully suggests, this function rotates the letters in a string of words by a key of 1. A turns into B, B turns into C and so on.
+    /* This function rotates the letters in a string of words by a key of 1. A turns into B, B turns into C and so on.
     The while condition ensures that the string is read in its entirety. The loop contains an IF, 2 ELSE IFS, and an ELSE that check each of the 3 possible
     scenariors that can occur each time the string at index i is read. The IF and the first IF ELSE check for the scenario at which the string element at i
     is a grammatical feature. If this is the case, the element at i will be left and unchanged, and i will be incremented; effectively skipping over that element.
@@ -439,7 +453,7 @@ void encryptRotation(char *someString, int someInteger)
 {
     int i = 0; // i for index
     while(someString[i] != '\0') 
-    {
+    {                                                                                                     /* ASCII 39 is the ' symbol */
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
         {
             i++;
@@ -480,7 +494,7 @@ void decryptRotation(char *someString, int someInteger)
 {
     int i = 0; // i for index
     while(someString[i] != '\0') 
-    {
+    {                                                                                                    /* ASCII 39 is the ' symbol */
         if(someString[i] == '.' || someString[i] == ' ' || someString[i] == '!' || someString[i] == '?' || someString[i] == 39 || someString[i] == '"')
         {
             i++;
@@ -518,7 +532,7 @@ void decryptRotation(char *someString, int someInteger)
 
 void substitute(char *someString, char originalLiteral, char literalSubstitute, char *memoryString)
 {
-    int i = 0;
+    int i = 0; // i for index.
     while(someString[i] != '\0')
             {
                 if(someString[i] == originalLiteral && memoryString[i] != '-')
@@ -528,7 +542,21 @@ void substitute(char *someString, char originalLiteral, char literalSubstitute, 
                 }
                 i++;
             }
-    /* */
+    /* The while loop above reads through each character held by 'someString'. If it runs into a character that is equal to 'originalLiteral', it will change the 
+       value of that character into the value of the character held by 'literalSubstitute'. So, if 'A' is the second argument, and 'B' is the third, the loop
+       will run through the string and turn A's into B's. 
+       When the IF statement changes the value of a character, it also remembers the index at which it changed it. It does so by placing a 'marker' (the '-' symbol)
+       inside the memoryString at that index. One of the conditions for the IF statement to trigger is that the memoryString at that index does not already have
+       a marker on it.
+       This is necessary because the substitute function only changes one unique letter each time it is called. The following is a possbile scenario that would
+       occur if each index was not remembered when a letter at that index was changed:
+       
+       (someString holds the string: "ABBA". The user's substitution alphabet switches A for B, and B for A. On substitute()'s first call, it switches A's for B's
+       and the string now looks like: "BBBB". On substitute()'s second call, it switches B's for A's. The string now looks like: "AAAA".)
+       
+       "AAAA" was not the intended result. "BAAB" was the intended result. So, for the function to work as intended, it needs to know at which indexes
+       it had already performed a substitution. That way it can know not to perform another substitution at that index again.
+       That is the purpose the memoryString serves. */
 }
 
 
@@ -538,7 +566,8 @@ void substitute(char *someString, char originalLiteral, char literalSubstitute, 
 char spellCheck4(char letter1, char letter2, char letter3, char letter4)
 {
     
-            
+            /* There are multiple chunks of IF statements here. Each chunk looks for 1 word each. The chunk below looks for the word 'IN'. 
+               Each chunk is exactly the same as the last one, it just looks for a different word. */
             
             
     if(letter1 == ' ' && letter2 == 'I' && letter3 == 'N' && letter4 == ' ')
@@ -558,6 +587,18 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
         return 1;
     }
     
+        /* This function works by looking at the 4 most recent consecutive characters read in a string. The above 'IF chunk' looks for the word 'IN' within those
+           4 consecutive characters. You will see each IF in the chunk has the order of their letter variables offset by one when compared to the one above it.
+           This is because there are 4 permutations (or is it combinations?) that the 4 most recent consecutive characters can contain the word 'IN' surrounded
+           by a space bar on each end. For example, if the start of string looked like this: "I AM IN ....", only the first IF statement would detect the word.
+           If the start of the string looked like this: "AM IN ...." only the third IF statement would detect the word. If a word is detected by any of the IFs
+           in this function, the function will return 1. If no word is found, it returns 0. 
+           To help understand what was just described, when the loop that uses this function reads a string and remembers the 4 most recent characters in the string,
+           it looks like this:   
+                                           "AM IN A DOG HOUSE" - someString                 
+                                            12341234123412341  - the letter variables counting and remembering.             
+                                             [3412]            -  Notice how the 4 variables that hold " IN " are the variables: letter3, letter4
+                                                                  letter1, letter2 in that order. */
     
     
     if(letter1 == ' ' && letter2 == 'I' && letter3 == 'S' && letter4 == ' ')
@@ -623,7 +664,7 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
     
     return 0;
 }
-/* */
+
 
 
 
@@ -631,6 +672,9 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
 
 char spellCheck5(char letter1, char letter2, char letter3, char letter4, char letter5)
 {
+    /* This function works exactly the same way the spellCheck4 function words. However, instead, it looks for 3 letter words surrounded by a space bar on each end.
+       Hence, it must remember 1 more consecutive character than spellCheck4, and hence each 'IF chunk' contains another IF because there is one more permutation 
+       (combination?) for which a 3 letter word can be found in the past 5 consecutive characters. */ 
     if(letter1 == ' ' && letter2 == 'A' && letter3 == 'N' && letter4 == 'D' && letter5 == ' ')
     {
         return 1;  
@@ -1054,6 +1098,8 @@ char spellCheck5(char letter1, char letter2, char letter3, char letter4, char le
 
 char spellCheck6(char letter1, char letter2, char letter3, char letter4, char letter5, char letter6)
 {
+    /* This function works just like spellCheck5 and spellCheck4. It looks for 4 letter words surrounded by a space bar on each end, and contains one more IF per
+       'IF chunk'. */
     if(letter1 == ' ' && letter2 == 'T' && letter3 == 'H' && letter4 == 'A' && letter5 == 'T' && letter6 == ' ')
     {
         return 1;
