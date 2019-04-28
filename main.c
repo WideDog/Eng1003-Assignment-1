@@ -757,12 +757,12 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
         return 1;
     }
     
-        /* This function works by looking at the 4 most recent consecutive characters read in a string. The above 'IF chunk' looks for the word 'IN' within those
+        /* This function works by looking at the 4 most recent consecutive characters read in a string. The above 'IF chunk' looks for the word 'IS' within those
            4 consecutive characters. You will see each IF in the chunk has the order of their letter variables offset by one when compared to the one above it.
-           This is because there are 4 permutations (or is it combinations?) that the 4 most recent consecutive characters can contain the word 'IN' surrounded
-           by a space bar on each end. For example, if the start of string looked like this: "I AM IN ....", only the first IF statement would detect the word.
-           If the start of the string looked like this: "AM IN ...." only the third IF statement would detect the word. If a word is detected by any of the IFs
-           in this function, the function will return 1. If no word is found, it returns 0. 
+           This is because there are 4 permutations (or is it combinations?) that the 4 most recent consecutive characters can contain the word 'IS' surrounded
+           by a space bar on each end. For example, if the start of a string looked like this: "I AM IN ....", only the first IF statement would detect the word.
+           If the start of the string looked like this: "AM IN ...." only the third IF statement would detect the word.
+           If a word is detected by any of the IFs in this function, the function will return 1. If no word is found, it returns 0. 
            To help understand what was just described, when the loop that uses this function reads a string and remembers the 4 most recent characters in the string,
            it looks like this:   
                                            "AM IN A DOG HOUSE" - someString                 
