@@ -51,7 +51,7 @@ int main() {
     fgetc(stdin);       /* I put fgetc here because for some reason without it I could not use the fgets function.
                            I used fgets because it scans whitespace.
                            fgetc() seems to act like some kind of fget initialisation and I really do not understand why.*/
-    if(userChoice < 'a' || userChoice > 'h') 
+    if(userChoice < 'a' || userChoice > 'e') 
     {
         printf("Incorrect choice. Terminating program.\n");  /* This is here incase the user inputs the wrong letter. */
         return 0;
@@ -564,39 +564,6 @@ int main() {
             break;
         }
         
-        case 'g':
-        {
-            char string[1000];
-            char number = 1;
-            char rep = 1;
-            while(rep < 60)
-            {
-                number = 1;
-                printf("\n\n");
-                fgets(string, 1000, stdin);
-                while(number < 27)
-                {
-                    rotateByOne(string);
-                    printf("%s   ", string);
-                    number++; 
-                }
-                rep++;
-            }
-
-            break;
-        }
-        case 'h':
-        {
-            //int i = 1;
-            char string[1000];
-            fgets(string, 2000, stdin);
-            /* while(string[i] != '\0')
-            {
-                printf("%d\n", i);
-                i++;
-            } */
-            printf("%s\n", string);
-        }
         
         default:
         {
@@ -857,7 +824,7 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
 
 char spellCheck5(char letter1, char letter2, char letter3, char letter4, char letter5)
 {
-    /* This function works exactly the same way the spellCheck4 function words. However, instead, it looks for 3 letter words surrounded by a space bar on each end.
+    /* This function works exactly the same way the spellCheck4 function works. However, instead, it looks for 3 letter words surrounded by a space bar on each end.
        Hence, it must remember 1 more consecutive character than spellCheck4, and hence each 'IF chunk' contains another IF because there is one more permutation 
        (combination?) for which a 3 letter word can be found in the past 5 consecutive characters. */ 
     if(letter1 == ' ' && letter2 == 'A' && letter3 == 'N' && letter4 == 'D' && letter5 == ' ')
