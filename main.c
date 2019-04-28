@@ -7,13 +7,28 @@
 
 
 // FUNCTION PROTOTYPES
-void encryptRotation(char *someString, int someInteger);
-void decryptRotation(char *someString, int someInteger);
+void encryptRotation(char *someString, int someInteger);  /* This function rotates someString by someInteger. */ 
+void decryptRotation(char *someString, int someInteger);  /* This function rotates someString backwards by someInteger. */
+
 char spellCheck4(char letter1, char letter2, char letter3, char letter4);
 char spellCheck5(char letter1, char letter2, char letter3, char letter4, char letter5);
 char spellCheck6(char letter1, char letter2, char letter3, char letter4, char letter5, char letter6);
-void rotateByOne(char *someString);
-void substitute(char *someString, char originalLiteral, char literalSubstitute, char *memoryString);
+/* The spellCheck functions return 1 if they can see a word held inside of the letters it they take as arguments. If they do not, they return 0. */
+
+char spellCheck4Backup(char letter1, char letter2, char letter3, char letter4);
+char spellCheck5Backup(char letter1, char letter2, char letter3, char letter4, char letter5);
+char spellCheck6Backup(char letter1, char letter2, char letter3, char letter4, char letter5, char letter6);
+/* The spellCheckBackup functions do the same as the spellCheck functions, they just look for more unreliable words. They are used only if
+   the spellCheck functions cannot find a word.  */
+  
+void rotateByOne(char *someString);      
+              /* This function rotates someString by one. */
+void substitute(char *someString, char originalLiteral, char literalSubstitute, char *memoryString); 
+              /* This function substitutes all of the literals in a string that have the value held by originalLiteral and substitutes them with
+                 the value of the literal held by literalSubstitute. memoryString is explained in detail later. */
+                
+                
+                /* All functions are described in more detail at their definitions.*/
 // FUNCTION PROTOTYPES
 
 
@@ -33,7 +48,8 @@ int main() {
     printf("e). Have a substitution cypher decrypted after inputting both the cipher and the substitution key.\n\n");
     scanf("%c", &userChoice);
                         /* The previous code is for a user interface. */
-    fgetc(stdin);       /* I put fgetc here because for some reason without it I could use the fgets function. I used fgets because it scans whitespace.
+    fgetc(stdin);       /* I put fgetc here because for some reason without it I could not use the fgets function.
+                           I used fgets because it scans whitespace.
                            fgetc() seems to act like some kind of fget initialisation and I really do not understand why.*/
     if(userChoice < 'a' || userChoice > 'h') 
     {
@@ -66,8 +82,9 @@ int main() {
         
         case 'b': 
         {
-            int rotation = 0;
-            char string[1500];
+            int rotation = 0;   // A variable where the user's cipher rotation key is kept,
+            char string[1500];  // A string where the user's cipher is kept. I often re-used string and variable names between cases because apparently
+                                // they have their own scope.
             printf("Type a rotation cipher.\n");
             fgets(string, 1500, stdin);
             printf("Enter the rotation number that was used to make the cipher.");
@@ -266,11 +283,194 @@ int main() {
                 repetition++;
                 
             }
+            
+            /*
+               The code below is a backup Big Loop. The only difference between the previous Loop and this second Big Loop is that it uses spellCheckBackup
+               functions in its spell checking loops. This second Big Loop will only run if the first Big Loop fails to detect any words.
+               The spellCheckBackup functions try to detect words that were deemed too unreliable to place in the main spell checking code (the code
+               in the first Big Loop). Hence, the spellCheckBackup functions and the Big Loop below are used as a last resort. 
+               An example of a word that is unreliable to detect during decryption is the word " WHAT ". This is because when a particular rotation key is
+               applied to "WHAT", the name "ALEX" occurs. This means that if a user's hidden message contained the name ALEX, the Big Loop could rotate
+               the user's cipher, and by chance, rotate an encrpyted 'ALEX' into the word 'WHAT'. It would then detect the word 'WHAT' and assume that it
+               had decrypted the cipher, when in reality, it hadn't. 
+               All variables used in the previous Big Loop are reset here as they are re-used in the following loop. */ 
+            i = 0;
+            letter1 = 0;
+            letter2 = 0;
+            letter3 = 0;
+            letter4 = 0;
+            letter5 = 0;
+            letter6 = 0;
+            repetition = 1;
+            
+            
+            if(wordFound == 0)
+            {
+                rotateByOne(string); /* This is here to rotate the string back to the user's cipher. In the case that the previous Big Loop had
+                                        failed to detect a word, and consequently triggered the IF statement just above, the user's cipher would have been
+                                        rotated a total of 25 times. That leaves it one rotation behind what the user originally input.
+                                        So, this rotates it by one to take it back to the original cipher. 
+                                        This is done intentionally so that none of the code will spell check the cipher that the user entered. 
+                                        (Notice how at the start of the Big Loop below, the rotateByOne() function is used before any of the
+                                        spell checking loops start. The same was done in the first Big Loop.)
+                                        The reason for not spell checking the user's cipher is for the scenario in which the user's cipher, by chance
+                                        contains actual words that happen to be included in the spellCheck() functions.
+                                        For example, an encrypted message could still contain the word WHAT (as previously explained in the comment
+                                        chunk above of this one). */
+                while(repetition < 26 && wordFound != 1)
+                {
+                    rotateByOne(string);
+                    while(string[i] != '\0')
+                    {
+                        
+                        letter1 = string[i];
+                        i++;                        
+                        if(spellCheck4Backup(letter1, letter2, letter3, letter4) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter2 = string[i];
+                        i++;
+                        if(spellCheck4Backup(letter1, letter2, letter3, letter4) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter3 = string[i];
+                        i++;
+                        if(spellCheck4Backup(letter1, letter2, letter3, letter4) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter4 = string[i];
+                        i++;
+                        if(spellCheck4Backup(letter1, letter2, letter3, letter4) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                    }
+                    
+                    i = 0;
+                    letter1 = 0;
+                    letter2 = 0;
+                    letter3 = 0;
+                    letter4 = 0;
+                    
+                    while(string[i] != '\0')
+                    {
+                        
+                        letter1 = string[i];
+                        i++;
+                        if(spellCheck5Backup(letter1, letter2, letter3, letter4, letter5) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter2 = string[i];
+                        i++;
+                        if(spellCheck5Backup(letter1, letter2, letter3, letter4, letter5) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter3 = string[i];
+                        i++;
+                        if(spellCheck5Backup(letter1, letter2, letter3, letter4, letter5) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter4 = string[i];
+                        i++;     
+                        if(spellCheck5Backup(letter1, letter2, letter3, letter4, letter5) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter5 = string[i];
+                        i++;
+                        if(spellCheck5Backup(letter1, letter2, letter3, letter4, letter5) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                    }
+                    
+                    i = 0;
+                    letter1 = 0;
+                    letter2 = 0;
+                    letter3 = 0;
+                    letter4 = 0;
+                    letter5 = 0;
+                    
+                    while(string[i] != '\0')
+                    {
+                        
+                        letter1 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter2 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter3 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter4 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter5 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                        letter6 = string[i];
+                        i++;
+                        if(spellCheck6Backup(letter1, letter2, letter3, letter4, letter5, letter6) == 1)
+                        {
+                            wordFound = 1;
+                            break;
+                        }
+                    }
+                    
+                    i = 0;
+                    letter1 = 0;
+                    letter2 = 0;
+                    letter3 = 0;
+                    letter4 = 0;
+                    letter5 = 0;
+                    letter6 = 0;
+                    repetition++;
+                }
+            }
+
+                        
+            
             if(wordFound == 1)
             {
                 printf("I assume your message was: %s\n", string);
             }
-            if(wordFound != 1)
+            if(wordFound == 0)
             {
                 printf("Decryption failed.\n");
             }
@@ -296,30 +496,32 @@ int main() {
             printf("Please use upper case when entering your substitutions.\n\n");
             while(i < 26)
             {
-                printf("Letters you have typed:%s", substitutions);
+                printf("Letters you have typed:%s", substitutions); // This is here in case the user is making their alphabet off the cuff and does not know
+                                                                    // what letters they have previously entered.
                 printf("\nSubstitution for %c:  ", interfaceLetter);
                 scanf(" %c", &substitutions[i]);
                 interfaceLetter++;
                 i++;
             }
             i = 0;
-                /* The while loop above prints a letter of the alphabet starting at A and then takes a letter input from the user. The input is stored in the
-                   'substitutions' array. The letter the user input for example when the program output 'A' will be the letter that replaces all A's in 
-                   the string during the process of encryption. i is reset to 0 as it is used in the next loop.*/
+                /* The while loop above prints a letter of the alphabet starting at A and then takes a letter input from the user. This is repeated 26 times.
+                   The input is stored in the 'substitutions' array. The letter the user input for example when the program output 'A' will be the letter
+                   that replaces all A's in the string during the process of encryption. i is reset to 0 as it is used in the next loop.*/
             while(i < 26)
             {
                 substitute(string, letter, substitutions[i], indexMemory);
                 letter++;
                 i++;
             }
-               /* The while loop above encrypts the user's message using their substitution alphabet via the 'substitute' function. The function only substitutes
+               /* The while loop above encrypts the user's message with their substitution alphabet. The substitute() function only substitutes
                   one unique letter for another each time it is called, so it must be repeatedly used to completely encrypt a message. The second argument is
-                  the letter in 'string' that will be substituted by the letter held in the third argument. On substitute()'s first call in this loop, 'letter' has
-                  the value of 'A', and substitute[i] has the value held in substitute[0] (i = 0 at this point). The value held in substitute[0] is the letter the
-                  user input when prompted with the letter 'A'. On the second use, 'letter' has been incremented by 1, and so has i, and so it moves onto replacing
+                  the letter in the string that will be substituted by the letter held in the third argument.
+                  On substitute()'s first call in this loop, 'letter' has the value of 'A'. substitute[i] has the value held in substitute[0]
+                  (i = 0 at this point). The value held in substitute[0] is the letter the user input when prompted with the letter 'A'.
+                  On the second use, 'letter' has been incremented by 1, and so has i, and so it moves onto replacing
                   all the Bs in the string with whatever the user input when prompted with 'B'. This continues until the substitution encryption is complete. 
                   The function is further explained at its function definition. */
-            printf("%s\n", string);
+            printf("Your encrypted message: %s\n", string);
             break;
             
         }  
@@ -354,9 +556,10 @@ int main() {
                 letter++;
                 i++;
             }
-              /* The loop above is almost identical to the loop in case 'd'. The only difference is that substitutions[i] is now the second argument, and letter
-                 third argument. This means that on the functions first use in the loop, whatever the user's substitution for 'A' used in 
-                 their cipher will now be replaced with A. This is repeated for each letter of the alphabet. */ 
+    /* The loop above is almost identical to the loop in case 'd'. The only difference is that 'substitutions[i]' is now the second argument, 'and letter'
+       is the third argument. So, on the functions first use in the loop, the user's letter substitution for 'A' for their cipher
+       will now be replaced with 'A'.
+       This is repeated for each letter of the alphabet. */ 
             printf("I assume your message was: %s", string);
             break;
         }
@@ -570,19 +773,19 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
                Each chunk is exactly the same as the last one, it just looks for a different word. */
             
             
-    if(letter1 == ' ' && letter2 == 'I' && letter3 == 'N' && letter4 == ' ')
+    if(letter1 == ' ' && letter2 == 'I' && letter3 == 'S' && letter4 == ' ')
     {
         return 1;
     }
-    if(letter2 == ' ' && letter3 == 'I' && letter4 == 'N' && letter1 == ' ')
+    if(letter2 == ' ' && letter3 == 'I' && letter4 == 'S' && letter1 == ' ')
     {
         return 1;
     }
-    if(letter3 == ' ' && letter4 == 'I' && letter1 == 'N' && letter2 == ' ')
+    if(letter3 == ' ' && letter4 == 'I' && letter1 == 'S' && letter2 == ' ')
     {
         return 1;
     }
-    if(letter4 == ' ' && letter1 == 'I' && letter2 == 'N' && letter3 == ' ')
+    if(letter4 == ' ' && letter1 == 'I' && letter2 == 'S' && letter3 == ' ')
     {
         return 1;
     }
@@ -601,24 +804,6 @@ char spellCheck4(char letter1, char letter2, char letter3, char letter4)
                                                                   letter1, letter2 in that order. */
     
     
-    if(letter1 == ' ' && letter2 == 'I' && letter3 == 'S' && letter4 == ' ')
-    {
-        return 1;
-    }
-    if(letter2 == ' ' && letter3 == 'I' && letter4 == 'S' && letter1 == ' ')
-    {
-        return 1;
-    }
-    if(letter3 == ' ' && letter4 == 'I' && letter1 == 'S' && letter2 == ' ')
-    {
-        return 1;
-    }
-    if(letter4 == ' ' && letter1 == 'I' && letter2 == 'S' && letter3 == ' ')
-    {
-        return 1;
-    }
-                    
-      
       
     if(letter1 == ' ' && letter2 == 'O' && letter3 == 'F' && letter4 == ' ')
     {
@@ -715,29 +900,6 @@ char spellCheck5(char letter1, char letter2, char letter3, char letter4, char le
         return 1;  
     }
     if(letter2 == ' ' && letter3 == 'C' && letter4 == 'A' && letter5 == 'N' && letter1 == ' ')
-    {
-        return 1;  
-    }
-    
-    
-    
-    if(letter1 == ' ' && letter2 == 'T' && letter3 == 'H' && letter4 == 'E' && letter5 == ' ')
-    {
-        return 1;  
-    }
-    if(letter5 == ' ' && letter1 == 'T' && letter2 == 'H' && letter3 == 'E' && letter4 == ' ')
-    {
-        return 1;  
-    }
-    if(letter4 == ' ' && letter5 == 'T' && letter1 == 'H' && letter2 == 'E' && letter3 == ' ')
-    {
-        return 1;  
-    }
-    if(letter3 == ' ' && letter4 == 'T' && letter5 == 'H' && letter1 == 'E' && letter2 == ' ')
-    {
-        return 1;  
-    }
-    if(letter2 == ' ' && letter3 == 'T' && letter4 == 'H' && letter5 == 'E' && letter1 == ' ')
     {
         return 1;  
     }
@@ -1452,6 +1614,101 @@ char spellCheck6(char letter1, char letter2, char letter3, char letter4, char le
     return 0;
 }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+char spellCheck4Backup(char letter1, char letter2, char letter3, char letter4)
+{
+    if(letter1 == ' ' && letter2 == 'I' && letter3 == 'N' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'I' && letter4 == 'N' && letter1 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'I' && letter1 == 'N' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter1 == 'I' && letter2 == 'N' && letter3 == ' ')
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+
+
+char spellCheck5Backup(char letter1, char letter2, char letter3, char letter4, char letter5)
+{
+    if(letter1 == ' ' && letter2 == 'T' && letter3 == 'H' && letter4 == 'E' && letter5 == ' ')
+    {
+        return 1;  
+    }
+    if(letter5 == ' ' && letter1 == 'T' && letter2 == 'H' && letter3 == 'E' && letter4 == ' ')
+    {
+        return 1;  
+    }
+    if(letter4 == ' ' && letter5 == 'T' && letter1 == 'H' && letter2 == 'E' && letter3 == ' ')
+    {
+        return 1;  
+    }
+    if(letter3 == ' ' && letter4 == 'T' && letter5 == 'H' && letter1 == 'E' && letter2 == ' ')
+    {
+        return 1;  
+    }
+    if(letter2 == ' ' && letter3 == 'T' && letter4 == 'H' && letter5 == 'E' && letter1 == ' ')
+    {
+        return 1;  
+    }
+    
+    return 0;
+}
+
+
+
+char spellCheck6Backup(char letter1, char letter2, char letter3, char letter4, char letter5, char letter6)
+{
+    if(letter1 == ' ' && letter2 == 'W' && letter3 == 'H' && letter4 == 'A' && letter5 == 'T' && letter6 == ' ')
+    {
+        return 1;
+    }
+    if(letter6 == ' ' && letter1 == 'W' && letter2 == 'H' && letter3 == 'A' && letter4 == 'T' && letter5 == ' ')
+    {
+        return 1;
+    }
+    if(letter5 == ' ' && letter6 == 'W' && letter1 == 'H' && letter2 == 'A' && letter3 == 'T' && letter4 == ' ')
+    {
+        return 1;
+    }
+    if(letter4 == ' ' && letter5 == 'W' && letter6 == 'H' && letter1 == 'A' && letter2 == 'T' && letter3 == ' ')
+    {
+        return 1;
+    }
+    if(letter3 == ' ' && letter4 == 'W' && letter5 == 'H' && letter6 == 'A' && letter1 == 'T' && letter2 == ' ')
+    {
+        return 1;
+    }
+    if(letter2 == ' ' && letter3 == 'W' && letter4 == 'H' && letter5 == 'A' && letter6 == 'T' && letter1 == ' ')
+    {
+        return 1;
+    }
+    
+    return 0; 
+}
     
     
 // FUNCTION DEFINITIONS
